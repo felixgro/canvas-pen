@@ -6,12 +6,15 @@ export default class Pen {
 
    constructor(c: CanvasRenderingContext2D | HTMLCanvasElement) {
       if ('getContext' in c) {
+         // c is HTMLCanvasElement, which contains getContext() method
          this.canvas = c as HTMLCanvasElement;
          this.ctx = c.getContext('2d')!;
       } else if ('canvas' in c) {
+         // c is CanvasRenderingContext2D, which contains canvas property
          this.ctx = c as CanvasRenderingContext2D;
          this.canvas = this.ctx.canvas;
       } else {
+         // c is not HTMLCanvasElement or CanvasRenderingContext2D
          throw new Error('Invalid canvas or context');
       }
    }
