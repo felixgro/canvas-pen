@@ -1,9 +1,15 @@
 {
-	"name": "@felixgro/pen",
-	"version": "0.1.0",
+	"name": "canvas-pen",
+	"version": "0.2.0",
 	"license": "MIT",
+	"author": {
+		"name": "Felix Grohs",
+		"email": "me@felixgrohs.dev",
+		"url": "https://felixgrohs.dev"
+	},
 	"main": "./dist/pen.umd.js",
 	"module": "./dist/pen.es.js",
+	"types": "./dist/src/Pen.d.ts",
 	"exports": {
 		".": {
 			"import": "./dist/pen.es.js",
