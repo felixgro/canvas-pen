@@ -2,6 +2,14 @@
 	"name": "@felixgro/pen",
 	"version": "0.1.0",
 	"license": "MIT",
+	"main": "./dist/pen.umd.js",
+	"module": "./dist/pen.es.js",
+	"exports": {
+		".": {
+			"import": "./dist/pen.es.js",
+			"require": "./dist/pen.umd.js"
+		}
+	},
 	"scripts": {
 		"dev": "vite demo",
 		"build": "tsc && vite build",
@@ -9,6 +17,7 @@
 	},
 	"devDependencies": {
 		"typescript": "^4.3.2",
-		"vite": "^2.6.4"
+		"vite": "^2.6.4",
+		"vite-plugin-dts": "^0.9.3"
 	}
 }

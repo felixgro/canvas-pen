@@ -1,4 +1,4 @@
-import Pen from '../src/main';
+import Pen from '../src/Pen';
 
 // get canvas element
 const canvas = document.querySelector('canvas');
