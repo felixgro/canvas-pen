@@ -1,7 +1,4 @@
-export interface Point {
-   x: number;
-   y: number;
-}
+type Position = [number, number];
 
 export default class Pen {
    public ctx: CanvasRenderingContext2D;
@@ -69,71 +66,82 @@ export default class Pen {
       return this;
    }
 
-   public getImageData(): ImageData {
-      return this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
-   }
-
-   public fill(): Pen {
+   public fill(color?: string): Pen {
+      if (color) {
+         this.ctx.save();
+         this.ctx.fillStyle = color;
+      }
       this.ctx.fill();
+      if (color) this.ctx.restore();
       return this;
    }
 
-   public stroke(): Pen {
+   public stroke(color?: string, width?: number): Pen {
+      if (color || width) {
+         this.ctx.save();
+         if (color) this.ctx.strokeStyle = color;
+         if (width) this.ctx.lineWidth = width;
+      }
       this.ctx.stroke();
+      if (color || width) this.ctx.restore();
       return this;
    }
 
-   public line(...points: Point[]): Pen {
+   public line(...points: Position[]): Pen {
       this.ctx.beginPath();
-      this.ctx.moveTo(points[0].x, points[0].y);
+      this.ctx.moveTo(...points[0]);
       for (let i = 1; i < points.length; i++) {
-         this.ctx.lineTo(points[i].x, points[i].y);
+         this.ctx.lineTo(...points[i]);
       }
       return this;
    }
 
-   public circle(center: Point, radius: number): Pen {
+   public circle(origin: Position, radius: number): Pen {
       this.ctx.beginPath();
-      this.ctx.ellipse(center.x, center.y, radius, radius, 0, 0, 2 * Math.PI);
+      this.ctx.ellipse(...origin, radius, radius, 0, 0, 2 * Math.PI);
       return this;
    }
 
-   public ellipse(center: Point, radiusX: number, radiusY: number): Pen {
+   public ellipse(origin: Position, radius: Position): Pen {
       this.ctx.beginPath();
-      this.ctx.ellipse(center.x, center.y, radiusX, radiusY, 0, 0, 2 * Math.PI);
+      this.ctx.ellipse(...origin, ...radius, 0, 0, 2 * Math.PI);
       return this;
    }
 
-   public square(center: Point, size: number): Pen {
+   public square(origin: Position, size: number): Pen {
       this.ctx.beginPath();
-      this.ctx.rect(center.x - size / 2, center.y - size / 2, size, size);
+      origin[0] -= size / 2;
+      origin[1] -= size / 2;
+      this.ctx.rect(...origin, size, size);
       return this;
    }
 
-   public rect(center: Point, width: number, height: number): Pen {
+   public rect(origin: Position, width: number, height: number): Pen {
       this.ctx.beginPath();
-      this.ctx.rect(center.x - width / 2, center.y - height / 2, width, height);
+      origin[0] -= width / 2;
+      origin[1] -= height / 2;
+      this.ctx.rect(...origin, width, height);
       return this;
    }
 
-   public arc(center: Point, radius: number, startAngle: number, endAngle: number, anticlockwise?: boolean): Pen {
+   public arc(origin: Position, radius: number, startAngle: number, endAngle: number, anticlockwise?: boolean): Pen {
       this.ctx.beginPath();
-      this.ctx.arc(center.x, center.y, radius, startAngle, endAngle, anticlockwise);
+      this.ctx.arc(...origin, radius, startAngle, endAngle, anticlockwise);
       return this;
    }
 
-   public shape(...points: Point[]): Pen {
+   public shape(...anchors: Position[]): Pen {
       this.ctx.beginPath();
-      this.ctx.moveTo(points[0].x, points[0].y);
-      for (let i = 1; i < points.length; i++) {
-         this.ctx.lineTo(points[i].x, points[i].y);
+      this.ctx.moveTo(...anchors[0]);
+      for (let i = 1; i < anchors.length; i++) {
+         this.ctx.lineTo(...anchors[i]);
       }
       this.ctx.closePath();
       return this;
    }
 
-   public translate(origin: Point): Pen {
-      this.ctx.translate(origin.x, origin.y);
+   public translate(origin: Position): Pen {
+      this.ctx.translate(...origin);
       return this;
    }
 
