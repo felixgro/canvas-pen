@@ -26,7 +26,7 @@ pen.square([200, 200], 250)
 
 // draw any shape using 2 or more points
 // example: outline of triangle
-pen.shape(
+pen.polygon(
    [250, 270],
    [200, 120],
    [150, 270]

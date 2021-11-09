@@ -1,8 +1,8 @@
-type Position = [number, number];
+export type Position = [number, number];
 
 export default class Pen {
-   public ctx: CanvasRenderingContext2D;
-   public canvas: HTMLCanvasElement;
+   public readonly ctx: CanvasRenderingContext2D;
+   public readonly canvas: HTMLCanvasElement;
 
    constructor(c: CanvasRenderingContext2D | HTMLCanvasElement) {
       if ('getContext' in c) {
@@ -19,57 +19,57 @@ export default class Pen {
       }
    }
 
-   public setFillStyle(style: string | CanvasGradient | CanvasPattern): Pen {
+   public setFillStyle(style: string | CanvasGradient | CanvasPattern): this {
       this.ctx.fillStyle = style;
       return this;
    }
 
-   public setStrokeStyle(style: string | CanvasGradient | CanvasPattern): Pen {
+   public setStrokeStyle(style: string | CanvasGradient | CanvasPattern): this {
       this.ctx.strokeStyle = style;
       return this;
    }
 
-   public setLineWidth(width: number): Pen {
+   public setLineWidth(width: number): this {
       this.ctx.lineWidth = width;
       return this;
    }
 
-   public setLineCap(cap: CanvasLineCap): Pen {
+   public setLineCap(cap: CanvasLineCap): this {
       this.ctx.lineCap = cap;
       return this;
    }
 
-   public setLineJoin(join: CanvasLineJoin): Pen {
+   public setLineJoin(join: CanvasLineJoin): this {
       this.ctx.lineJoin = join;
       return this;
    }
 
-   public setLineDash(...segments: number[]): Pen {
+   public setLineDash(...segments: number[]): this {
       this.ctx.setLineDash(segments);
       return this;
    }
 
-   public setFont(font: string): Pen {
+   public setFont(font: string): this {
       this.ctx.font = font;
       return this;
    }
 
-   public setTextAlign(align: CanvasTextAlign): Pen {
+   public setTextAlign(align: CanvasTextAlign): this {
       this.ctx.textAlign = align;
       return this;
    }
 
-   public setTextBaseLine(baseLine: CanvasTextBaseline): Pen {
+   public setTextBaseLine(baseLine: CanvasTextBaseline): this {
       this.ctx.textBaseline = baseLine;
       return this;
    }
 
-   public setMiterLimit(limit: number): Pen {
+   public setMiterLimit(limit: number): this {
       this.ctx.miterLimit = limit;
       return this;
    }
 
-   public fill(color?: string): Pen {
+   public fill(color?: string): this {
       if (color) {
          this.ctx.save();
          this.ctx.fillStyle = color;
@@ -79,7 +79,7 @@ export default class Pen {
       return this;
    }
 
-   public stroke(color?: string, width?: number): Pen {
+   public stroke(color?: string, width?: number): this {
       if (color || width) {
          this.ctx.save();
          if (color) this.ctx.strokeStyle = color;
@@ -90,7 +90,8 @@ export default class Pen {
       return this;
    }
 
-   public line(...points: Position[]): Pen {
+
+   public line(...points: Position[]): this {
       this.ctx.beginPath();
       this.ctx.moveTo(...points[0]);
       for (let i = 1; i < points.length; i++) {
@@ -99,19 +100,19 @@ export default class Pen {
       return this;
    }
 
-   public circle(origin: Position, radius: number): Pen {
+   public circle(origin: Position, radius: number): this {
       this.ctx.beginPath();
       this.ctx.ellipse(...origin, radius, radius, 0, 0, 2 * Math.PI);
       return this;
    }
 
-   public ellipse(origin: Position, radius: Position): Pen {
+   public ellipse(origin: Position, radius: Position): this {
       this.ctx.beginPath();
       this.ctx.ellipse(...origin, ...radius, 0, 0, 2 * Math.PI);
       return this;
    }
 
-   public square(origin: Position, size: number): Pen {
+   public square(origin: Position, size: number): this {
       this.ctx.beginPath();
       origin[0] -= size / 2;
       origin[1] -= size / 2;
@@ -119,7 +120,7 @@ export default class Pen {
       return this;
    }
 
-   public rect(origin: Position, width: number, height: number): Pen {
+   public rect(origin: Position, width: number, height: number): this {
       this.ctx.beginPath();
       origin[0] -= width / 2;
       origin[1] -= height / 2;
@@ -127,13 +128,13 @@ export default class Pen {
       return this;
    }
 
-   public arc(origin: Position, radius: number, startAngle: number, endAngle: number, anticlockwise?: boolean): Pen {
+   public arc(origin: Position, radius: number, startAngle: number, endAngle: number, anticlockwise?: boolean): this {
       this.ctx.beginPath();
       this.ctx.arc(...origin, radius, startAngle, endAngle, anticlockwise);
       return this;
    }
 
-   public shape(...anchors: Position[]): Pen {
+   public polygon(...anchors: Position[]): this {
       this.ctx.beginPath();
       this.ctx.moveTo(...anchors[0]);
       for (let i = 1; i < anchors.length; i++) {
@@ -143,22 +144,22 @@ export default class Pen {
       return this;
    }
 
-   public translate(origin: Position): Pen {
+   public translate(origin: Position): this {
       this.ctx.translate(...origin);
       return this;
    }
 
-   public save(): Pen {
+   public save(): this {
       this.ctx.save();
       return this;
    }
 
-   public restore(): Pen {
+   public restore(): this {
       this.ctx.restore();
       return this;
    }
 
-   public clear(): Pen {
+   public clear(): this {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       return this;
    }
