@@ -1,10 +1,12 @@
+export type PenContructorArgument = HTMLCanvasElement | CanvasRenderingContext2D | OffscreenCanvas | OffscreenCanvasRenderingContext2D;
+
 export type Position = [number, number];
 
 export default class Pen {
-   public readonly ctx: CanvasRenderingContext2D;
-   public readonly canvas: HTMLCanvasElement;
+   public readonly ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D;
+   public readonly canvas: HTMLCanvasElement | OffscreenCanvas;
 
-   constructor(c: CanvasRenderingContext2D | HTMLCanvasElement) {
+   constructor(c: PenContructorArgument) {
       if ('getContext' in c) {
          // c is HTMLCanvasElement, which contains getContext() method
          this.canvas = c as HTMLCanvasElement;
