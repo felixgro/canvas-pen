@@ -64,6 +64,18 @@ As you see Pen expects by default a `[x: number, y: number]` tuple for each posi
 
 Checkout this [CodePen][codepen-demo] to tinker with this library.
 
+## Customization
+You may customize the default behaviour of Pen by extending it's class:
+```ts
+import PenBase from 'canvas-pen';
+
+export default class Pen extends PenBase {
+    // add or overwrite any method as you wish!
+    // make sure to always return this from each method
+    // to enable multi-method-chaining
+}
+```
+
 ## Development
 
 These instructions will get you a copy of Pen up and running on your local machine for development and testing purposes.

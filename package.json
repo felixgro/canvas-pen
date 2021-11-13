@@ -1,6 +1,6 @@
 {
 	"name": "canvas-pen",
-	"version": "0.5.1",
+	"version": "0.5.2",
 	"license": "MIT",
 	"description": "Abstraction layer for drawing on 2d canvas with full support for OffscreenCanvas and Web Workers.",
 	"keywords": [
