@@ -15,7 +15,7 @@ jobs:
             - name: Publish if version has been changed
               uses: pascalgn/npm-publish-action@1.3.8
               with:
-                  publish_command: 'yarn'
+                  publish_command: 'yarn publish'
                   publish_args: '--non-interactive'
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
