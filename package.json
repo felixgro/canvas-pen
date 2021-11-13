@@ -1,9 +1,14 @@
 {
 	"name": "canvas-pen",
-	"version": "0.4.3",
+	"version": "0.4.4",
 	"license": "MIT",
 	"description": "Abstraction layer for drawing on 2d canvas with full support for OffscreenCanvas and Web Workers.",
-	"keywords": ["canvas", "offscreencanvas", "drawing", "web worker"],
+	"keywords": [
+		"canvas",
+		"offscreencanvas",
+		"drawing",
+		"web worker"
+	],
 	"homepage": "https://github.com/felixgro/canvas-pen",
 	"author": {
 		"name": "Felix Grohs",

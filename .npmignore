@@ -2,3 +2,6 @@
 demo
 src
 test
+tsconfig.json
+vite.config.json
+yarn.lock
