@@ -3,6 +3,6 @@
 module.exports = {
 	preset: 'ts-jest',
 	testEnvironment: 'jsdom',
-	testMatch: ['**/test/**/*.(test|spec).js?(x)', '**/?(*.)+(spec|test).js?(x)'],
+	testMatch: ['**/test/**/*.(test|spec).ts?(x)'],
 	setupFiles: ['jest-canvas-mock'],
 };
