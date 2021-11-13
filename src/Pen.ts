@@ -116,9 +116,9 @@ export default class Pen {
       return this;
    }
 
-   public ellipse(origin: Position, radius: Position): this {
+   public ellipse(origin: Position, radiusX: number, radiusY: number): this {
       this.ctx.beginPath();
-      this.ctx.ellipse(...origin, ...radius, 0, 0, 2 * Math.PI);
+      this.ctx.ellipse(...origin, radiusX, radiusY, 0, 0, 2 * Math.PI);
       return this;
    }
 
