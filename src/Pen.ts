@@ -31,22 +31,22 @@ export default class Pen {
       return this;
    }
 
-   public setLineWidth(width: number): this {
+   public setStrokeWidth(width: number): this {
       this.ctx.lineWidth = width;
       return this;
    }
 
-   public setLineCap(cap: CanvasLineCap): this {
+   public setStrokeCap(cap: CanvasLineCap): this {
       this.ctx.lineCap = cap;
       return this;
    }
 
-   public setLineJoin(join: CanvasLineJoin): this {
+   public setStrokeJoin(join: CanvasLineJoin): this {
       this.ctx.lineJoin = join;
       return this;
    }
 
-   public setLineDash(...segments: number[]): this {
+   public setStrokeDash(...segments: number[]): this {
       this.ctx.setLineDash(segments);
       return this;
    }
@@ -72,11 +72,9 @@ export default class Pen {
    }
 
    public setBackground(color: string): this {
-      const center: [number, number] = [this.canvas.width / 2, this.canvas.height / 2];
-
       return this.save()
          .setFillStyle(color)
-         .rect(center, this.canvas.width, this.canvas.height)
+         .rect([0, 0], this.canvas.width, this.canvas.height)
          .fill()
          .restore();
    }
@@ -126,16 +124,12 @@ export default class Pen {
 
    public square(origin: Position, size: number): this {
       this.ctx.beginPath();
-      origin[0] -= size / 2;
-      origin[1] -= size / 2;
       this.ctx.rect(...origin, size, size);
       return this;
    }
 
    public rect(origin: Position, width: number, height: number): this {
       this.ctx.beginPath();
-      origin[0] -= width / 2;
-      origin[1] -= height / 2;
       this.ctx.rect(...origin, width, height);
       return this;
    }
