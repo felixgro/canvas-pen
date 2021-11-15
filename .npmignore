@@ -1,6 +1,6 @@
 .github
 demo
-src
+/src
 test
 tsconfig.json
 vite.config.json
