@@ -34,7 +34,7 @@ Via CDN:
 ```
 
 ## Usage
-:warning: | This library is currently under development. It's API may change over time.
+:warning: | canvas-pen is currently under development.
 :---: | :---
 ```ts
 import Pen from 'canvas-pen';
