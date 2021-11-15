@@ -30,7 +30,7 @@ yarn add canvas-pen
 
 Via CDN:
 ```html
-<script src="https://unpkg.com/canvas-pen"></script>
+<script src="https://unpkg.com/canvas-pen@0.5.3"></script>
 ```
 
 ## Usage
