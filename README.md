@@ -34,6 +34,8 @@ Via CDN:
 ```
 
 ## Usage
+:warning: | This library is currently under development. It's API may change over time.
+:---: | :---
 ```ts
 import Pen from 'canvas-pen';
 
